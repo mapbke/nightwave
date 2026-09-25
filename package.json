@@ -1,0 +1,43 @@
+{
+  "name": "nightwave",
+  "version": "0.4.3",
+  "private": false,
+  "description": "Nightwave — monochrome SoundCloud desktop client shell with fast local UI, hotkeys, EQ and persistent session.",
+  "author": "Nightwave",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "electron .",
+    "build": "electron-builder --win portable",
+    "build:win": "electron-builder --win portable"
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1"
+  },
+  "devDependencies": {
+    "electron": "^38.8.6",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.nightwave.desktop",
+    "productName": "Nightwave",
+    "files": [
+      "electron/**/*",
+      "app/**/*",
+      "assets/**/*",
+      "build/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "compression": "store",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "Nightwave.exe"
+    }
+  }
+}
