@@ -1,28 +1,37 @@
 {
   "name": "nightwave",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "private": false,
-  "description": "Nightwave — monochrome SoundCloud desktop client shell with fast local UI, hotkeys, EQ and persistent session.",
+  "description": "Nightwave — monochrome SoundCloud desktop client with React frontend and typed Electron backend.",
   "author": "Nightwave",
-  "main": "electron/main.cjs",
+  "main": "out/main/index.js",
   "scripts": {
-    "dev": "electron .",
-    "build": "electron-builder --win portable",
-    "build:win": "electron-builder --win portable"
+    "dev": "electron-vite dev",
+    "build:app": "electron-vite build",
+    "build:win": "electron-vite build && electron-builder --win portable",
+    "preview": "electron-vite preview"
   },
   "dependencies": {
-    "discord-rpc": "^4.0.1"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.6.0",
     "electron": "^38.8.6",
-    "electron-builder": "^26.15.3"
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^4.0.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7"
   },
   "build": {
     "appId": "com.nightwave.desktop",
     "productName": "Nightwave",
     "files": [
-      "electron/**/*",
-      "app/**/*",
+      "out/**/*",
       "assets/**/*",
       "build/**/*",
       "package.json"
@@ -33,11 +42,9 @@
       "output": "release"
     },
     "win": {
-      "target": [
-        "portable"
-      ],
+      "target": ["portable"],
       "icon": "build/icon.ico",
-      "artifactName": "Nightwave.exe"
+      "artifactName": "Nightwave-v0.5.exe"
     }
   }
 }
