@@ -19,7 +19,7 @@ function TrackRow({ track, index, favorite }: { track: Track; index: number; fav
     <div className="track-row">
       <span className="index">{String(index + 1).padStart(2, '0')}</span>
       <div className="track-meta">
-        <img src={track.artwork || '/memes/pug.png'} />
+        <img src={track.artwork || './memes/pug.png'} />
         <div>
           <strong>{track.title}</strong>
           <small>{track.url.replace('https://soundcloud.com/', '')}</small>
@@ -88,7 +88,7 @@ export default function App() {
               <h1>Музыка.<br />Без лишнего.</h1>
               <p>React-фронт. TypeScript-бэкенд. Официальный SoundCloud Widget отвечает за playback вместо хрупких кликов по сайту.</p>
               <div className="info-card">
-                <img src="/memes/pug.png" />
+                <img src="./memes/pug.png" />
                 <div>
                   <strong>Плеер больше не кликает Play 20 раз.</strong>
                   <small>Одна команда пользователя = одна команда SoundCloud Widget.</small>
@@ -98,9 +98,9 @@ export default function App() {
               <small className="login-note">Google может блокировать embedded Electron login. Для входа внутри приложения используй SoundCloud email.</small>
             </div>
             <div className="hero-art">
-              <img className="main-art" src={state.player.track?.artwork || '/memes/peter.png'} />
-              <img className="sticker troll" src="/memes/troll.png" />
-              <img className="sticker squirrel" src="/memes/squirrel.png" />
+              <img className="main-art" src={state.player.track?.artwork || './memes/peter.png'} />
+              <img className="sticker troll" src="./memes/troll.png" />
+              <img className="sticker squirrel" src="./memes/squirrel.png" />
             </div>
           </section>
         )}
@@ -118,7 +118,7 @@ export default function App() {
             <div className="tracks">
               {state.results.length === 0 ? (
                 <div className="empty">
-                  <img src="/memes/squirrel.png" />
+                  <img src="./memes/squirrel.png" />
                   <strong>{state.searching ? 'SoundCloud отвечает…' : 'Найди что-нибудь.'}</strong>
                 </div>
               ) : state.results.map((track, index) => (
@@ -169,7 +169,7 @@ export default function App() {
 
       <footer className="playerbar">
         <div className="now">
-          <img src={state.player.track?.artwork || '/memes/squirrel.png'} />
+          <img src={state.player.track?.artwork || './memes/squirrel.png'} />
           <div>
             <strong>{state.player.track?.title || 'Nothing playing'}</strong>
             <small>{state.player.track?.artist || 'SoundCloud Widget player'}</small>
