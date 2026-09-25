@@ -88,8 +88,13 @@ async function engineEval(code){ if(!engineWindow||engineWindow.isDestroyed())cr
 async function control(action,payload){
   if(action==='play-url'){
     const url=String(payload||''); if(!/^https:\/\/(?:www\.)?soundcloud\.com\//i.test(url))return false;
-    await engineWindow.loadURL(url,{userAgent:UA});
-    for(let i=0;i<15;i++){await new Promise(r=>setTimeout(r,300)); const ok=await engineEval(`window.__nightwaveEngine?.command('playpause')`); if(ok)return true;} return false;
+    try { await engineWindow.loadURL(url,{userAgent:UA}); } catch { return false; }
+    for(let i=0;i<24;i++){
+      await new Promise(r=>setTimeout(r,i===0?700:250));
+      const ok=await engineEval(`window.__nightwaveEngine?.command('play')`);
+      if(ok)return true;
+    }
+    return false;
   }
   return Boolean(await engineEval(`window.__nightwaveEngine?.command(${JSON.stringify(String(action))},${JSON.stringify(payload)})`));
 }
@@ -100,7 +105,11 @@ async function searchTracks(q){
   if(!engineWindow||engineWindow.isDestroyed())createEngine();
   const url=`https://soundcloud.com/search/sounds?q=${encodeURIComponent(q)}`;
   try{await engineWindow.loadURL(url,{userAgent:UA});}catch{return [];}
-  for(let i=0;i<18;i++){await new Promise(r=>setTimeout(r,i===0?550:320)); const r=await engineEval('window.__nightwaveEngine?.scrape?.() || []'); if(Array.isArray(r)&&r.length)return r;}
+  for(let i=0;i<30;i++){
+    await new Promise(r=>setTimeout(r,i===0?800:300));
+    const r=await engineEval('window.__nightwaveEngine?.scrape?.() || []');
+    if(Array.isArray(r)&&r.length)return r;
+  }
   return [];
 }
 
