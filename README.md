@@ -1,21 +1,42 @@
 # Nightwave
 
-Monochrome desktop client shell for SoundCloud built with Electron. Nightwave keeps its own local UI while SoundCloud runs in a persistent background session.
+Unofficial monochrome SoundCloud desktop client.
 
-## v0.4.3
+## v0.5 architecture
 
-- Fast local UI: the app opens without waiting for SoundCloud.
-- Improved SoundCloud search and playback against the current web UI.
-- Persistent SoundCloud session.
-- Search, queue, history, favorites and 10-band EQ.
-- Media keys and global hotkeys.
-- OBS overlay and Discord Rich Presence support.
-- Portable Windows build (`Nightwave.exe`).
+Nightwave v0.5 is a clean-stack refactor:
+
+- **Frontend:** React + TypeScript + Vite
+- **Desktop/backend:** Electron main process written in TypeScript
+- **Build tooling:** electron-vite + electron-builder
+- **State:** Zustand
+- **Persistence:** local JSON store in Electron userData
+- **Playback:** official SoundCloud Widget, isolated from search
+- **Search:** separate SoundCloud web adapter
+
+The old build coupled search, playback and SoundCloud DOM controls together. A markup change could break everything at once. v0.5 separates those concerns.
+
+Playback no longer retries DOM Play clicks. Loading a track mounts one official SoundCloud Widget instance and starts it once when the widget reports READY.
+
+Nightwave does **not** block or bypass SoundCloud advertising. Ad delivery is controlled by SoundCloud.
+
+## Branch
+
+Development lives in:
+
+`refactor/v0.5-react`
 
 ## Run
 
 ```bat
 run-dev.bat
+```
+
+or:
+
+```powershell
+npm install
+npm run dev
 ```
 
 ## Build one portable EXE
@@ -24,18 +45,18 @@ run-dev.bat
 build-windows.bat
 ```
 
-The result is written to:
+Result:
 
 ```text
-release\Nightwave.exe
+release\Nightwave-v0.5.exe
 ```
 
-## Sign-in note
+## Login
 
-Google may reject sign-in inside embedded Electron/Chromium windows. Use SoundCloud email sign-in in Nightwave, or sign in with Google in a normal browser and use a future official OAuth build when API credentials are available.
+Public search/playback does not require Nightwave API credentials.
 
-##
+SoundCloud email login can be opened from the app. Google can reject authentication inside embedded Electron/Chromium windows; Nightwave does not fake or bypass that restriction.
 
-Nightwave uses the normal SoundCloud web sign-in flow and a persistent Electron session. No SoundCloud API Client ID or Client Secret is required.
+## Status
 
-This project is unofficial and is not affiliated with SoundCloud.
+v0.5 is intentionally on a separate branch until playback/search are tested on Windows. The current `main` release remains untouched.
