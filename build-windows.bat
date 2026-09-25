@@ -1,13 +1,25 @@
 @echo off
+setlocal
 cd /d "%~dp0"
-if not exist node_modules (
-  echo [Nightwave] Installing dependencies...
-  call npm install
-  if errorlevel 1 pause & exit /b 1
-)
-if exist release rmdir /s /q release
-call npm run build
-if errorlevel 1 pause & exit /b 1
+
+echo ==========================================
+echo NIGHTWAVE v0.5 - React + Electron backend
+echo ==========================================
 echo.
-echo READY: release\Nightwave.exe
+
+call npm install --no-audit --no-fund
+if errorlevel 1 goto :fail
+
+call npm run build:win
+if errorlevel 1 goto :fail
+
+echo.
+echo DONE: release\Nightwave-v0.5.exe
 pause
+exit /b 0
+
+:fail
+echo.
+echo BUILD FAILED
+pause
+exit /b 1
