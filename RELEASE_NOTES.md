@@ -1,6 +1,8 @@
-# Nightwave v0.4.2
+# Nightwave v0.4.3
 
-- Fixed SoundCloud social-login popup handling. SoundCloud opens OAuth providers with `window.open('about:blank', ...)`; Nightwave now allows that bootstrap window and then restricts navigation to SoundCloud, Google, Apple and Facebook domains.
-- Authentication windows share the persistent Nightwave SoundCloud session.
-- Fast local monochrome UI remains independent of SoundCloud loading speed.
+- Fixed search against newer SoundCloud pages by reading both current DOM and embedded page data.
+- Fixed track start: opening a track now waits for the page/player and explicitly starts playback instead of blindly toggling play/pause.
+- Extended search wait/retry window for slower SoundCloud loads.
+- Kept the fast local monochrome Nightwave UI.
+- Note: Google can block authentication inside embedded Electron/Chromium windows. SoundCloud email sign-in remains the reliable in-app login path without official OAuth credentials.
 - Portable Windows build: `Nightwave.exe`.
