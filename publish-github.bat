@@ -3,7 +3,7 @@ setlocal EnableExtensions
 cd /d "%~dp0"
 
 echo ======================================================
-echo NIGHTWAVE v0.4.2 - build + public GitHub + EXE release
+echo NIGHTWAVE v0.4.3 - build + public GitHub + EXE release
 echo ======================================================
 echo.
 
@@ -66,7 +66,7 @@ if not exist .git (
 )
 git add .
 git diff --cached --quiet
-if errorlevel 1 git commit -m "Nightwave v0.4.2 - fix SoundCloud OAuth popups"
+if errorlevel 1 git commit -m "Nightwave v0.4.3 - fix SoundCloud OAuth popups"
 
 for /f "delims=" %%U in ('gh api user --jq .login') do set "GHUSER=%%U"
 set "REPO=nightwave"
@@ -85,25 +85,25 @@ if errorlevel 1 (
 )
 
 echo.
-echo [5/5] Creating GitHub Release v0.4.2 with Nightwave.exe...
-gh release view v0.4.2 --repo "%GHUSER%/%REPO%" >nul 2>nul
-if not errorlevel 1 gh release delete v0.4.2 --repo "%GHUSER%/%REPO%" --yes --cleanup-tag
+echo [5/5] Creating GitHub Release v0.4.3 with Nightwave.exe...
+gh release view v0.4.3 --repo "%GHUSER%/%REPO%" >nul 2>nul
+if not errorlevel 1 gh release delete v0.4.3 --repo "%GHUSER%/%REPO%" --yes --cleanup-tag
 
-git tag -f v0.4.2
-git push origin v0.4.2 --force
+git tag -f v0.4.3
+git push origin v0.4.3 --force
 if errorlevel 1 goto :fail
 
-gh release create v0.4.2 "release\Nightwave.exe#Nightwave.exe" --repo "%GHUSER%/%REPO%" --title "Nightwave v0.4.2" --notes-file RELEASE_NOTES.md
+gh release create v0.4.3 "release\Nightwave.exe#Nightwave.exe" --repo "%GHUSER%/%REPO%" --title "Nightwave v0.4.3" --notes-file RELEASE_NOTES.md
 if errorlevel 1 goto :fail
 
 echo.
 echo ======================================================
 echo DONE
  echo Repo:    https://github.com/%GHUSER%/%REPO%
-echo Release: https://github.com/%GHUSER%/%REPO%/releases/tag/v0.4.2
+echo Release: https://github.com/%GHUSER%/%REPO%/releases/tag/v0.4.3
 echo EXE:     release\Nightwave.exe
 echo ======================================================
-start "" "https://github.com/%GHUSER%/%REPO%/releases/tag/v0.4.2"
+start "" "https://github.com/%GHUSER%/%REPO%/releases/tag/v0.4.3"
 pause
 exit /b 0
 
