@@ -45,4 +45,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           $tag = '${{ github.ref_name }}'
-          gh release create $tag 'release/Nightwave.exe' --title "Nightwave $tag" --notes "Portable Windows build. Download Nightwave.exe and run it — no Node.js or installer required. SoundCloud Google/Apple/Facebook popup authentication fix included."
+          gh release create $tag 'release/Nightwave.exe' --title "Nightwave $tag" --notes "Portable Windows build. Download Nightwave.exe and run it — no Node.js or installer required. SoundCloud search and playback fixes included."
