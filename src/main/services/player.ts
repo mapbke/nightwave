@@ -47,7 +47,7 @@ const PLAYER_HTML = `<!doctype html>
       window.__nwVolume = Number.isFinite(volume) ? volume : window.__nwVolume
       bound = false
       frame.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
-        '&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false'
+        '&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false'
       widget = SC.Widget(frame)
       bind()
       return true
