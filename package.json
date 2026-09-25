@@ -1,6 +1,6 @@
 {
   "name": "nightwave",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": false,
   "description": "Nightwave — monochrome SoundCloud desktop client shell with fast local UI, hotkeys, EQ and persistent session.",
   "author": "Nightwave",
