@@ -1,10 +1,10 @@
 {
-  "name": "nightwave",
-  "version": "0.4.3",
+  "name": "silence",
+  "version": "0.1.0",
   "private": false,
-  "description": "Nightwave — monochrome SoundCloud desktop client shell with fast local UI, hotkeys, EQ and persistent session.",
+  "description": "silence. — private offline thoughts journal",
   "author": "Nightwave",
-  "main": "electron/main.cjs",
+  "main": "electron/silence-main.cjs",
   "scripts": {
     "dev": "electron .",
     "build": "electron-builder --win portable",
@@ -18,13 +18,12 @@
     "electron-builder": "^26.15.3"
   },
   "build": {
-    "appId": "com.nightwave.desktop",
-    "productName": "Nightwave",
+    "appId": "dev.mapbke.silence",
+    "productName": "silence.",
     "files": [
-      "electron/**/*",
-      "app/**/*",
-      "assets/**/*",
-      "build/**/*",
+      "electron/silence-main.cjs",
+      "electron/silence-preload.cjs",
+      "silence/**/*",
       "package.json"
     ],
     "asar": true,
@@ -36,8 +35,7 @@
       "target": [
         "portable"
       ],
-      "icon": "build/icon.ico",
-      "artifactName": "Nightwave.exe"
+      "artifactName": "silence.exe"
     }
   }
 }
